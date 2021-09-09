@@ -4,6 +4,8 @@
 * Create post,user tables
 * Encode password using Spring security
 * Sign up, Log in with using JWT
+* Create post, show post list, get post by id 
+* Validate JWT
 
 ## Skills
 * Front - 
