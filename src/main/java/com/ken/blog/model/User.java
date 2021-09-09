@@ -1,9 +1,12 @@
 package com.ken.blog.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 @Entity
 @Table
+@Data
 public class User {
 
     @Id
