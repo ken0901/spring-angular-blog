@@ -1,5 +1,6 @@
 package com.ken.blog.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -20,12 +21,40 @@ public class JwtProvider {
         key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     }
 
-
+    /**
+     *
+     * @param authentication
+     * @return JWT token
+     */
     public String generateToken(Authentication authentication){
         User principal = (User) authentication.getPrincipal();
         return Jwts.builder()
                 .setSubject(principal.getUsername())
                 .signWith(key)
                 .compact();
+    }
+
+    /**
+     *
+     * @param jwt token
+     * @return boolean true
+     */
+    public boolean validateToken(String jwt){
+        Jwts.parser().setSigningKey(key).parseClaimsJws(jwt);
+        return true;
+    }
+
+    /**
+     *
+     * @param jwt token
+     * @return
+     */
+    public String getUsernameFromJWT(String jwt) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(key)
+                .parseClaimsJws(jwt)
+                .getBody();
+
+        return claims.getSubject();
     }
 }

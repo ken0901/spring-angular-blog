@@ -13,6 +13,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthService {
 
@@ -28,6 +30,10 @@ public class AuthService {
     @Autowired
     private JwtProvider jwtProvider;
 
+    /**
+     *
+     * @param registerRequest
+     */
     public void signup(RegisterRequest registerRequest) {
         User user = new User();
         user.setUsername(registerRequest.getUsername());
@@ -37,14 +43,30 @@ public class AuthService {
         userRepository.save(user);
     }
 
+    /**
+     *
+     * @param password
+     * @return encoded password
+     */
     private String encodePassword(String password) {
         return passwordEncoder.encode(password);
     }
 
+    /**
+     *
+     * @param loginRequest
+     * @return JWT token
+     */
     public String login(LoginRequest loginRequest) {
         Authentication authenticate = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authenticate);
         return  jwtProvider.generateToken(authenticate);
+    }
+
+    public Optional<org.springframework.security.core.userdetails.User> getCurrentUser() {
+        org.springframework.security.core.userdetails.User principal = (org.springframework.security.core.userdetails.User) SecurityContextHolder
+                .getContext().getAuthentication().getPrincipal();
+        return Optional.of(principal);
     }
 }
