@@ -8,7 +8,7 @@
 * Validate JWT
 
 ## Skills
-* Front - 
+* Front - https://github.com/ken0901/springboot-angular-blog-frontend
 * Back - Java 1.8 with Spring boot, Spring data JPA, Spring Security, JWT, ORM, Hibernate 
 * DB - MYSQL
 * IDE - IntelliJ, VS code,  MySQL Workbench
