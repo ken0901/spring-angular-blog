@@ -3,6 +3,7 @@ package com.ken.blog.controller;
 import com.ken.blog.dto.LoginRequest;
 import com.ken.blog.dto.RegisterRequest;
 import com.ken.blog.service.AuthService;
+import com.ken.blog.service.AuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +47,7 @@ public class AuthController {
      * @return JWT Token
      */
     @PostMapping("/login")
-    public String login(@RequestBody LoginRequest loginRequest){
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest){
         return authService.login(loginRequest);
     }
 }
