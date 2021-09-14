@@ -6,6 +6,7 @@
 * Sign up, Log in with using JWT
 * Create post, show post list, get post by id 
 * Validate JWT
+* CORS (Cross-Origin Resource Sharing) - allows a server to indicate any origins (domain, scheme, or port)
 
 ## Skills
 * Front - https://github.com/ken0901/springboot-angular-blog-frontend
