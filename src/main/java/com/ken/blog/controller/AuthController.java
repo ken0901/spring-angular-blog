@@ -6,10 +6,7 @@ import com.ken.blog.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *  client -> server
@@ -21,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
  *  6. Responds to client
  *
  */
+
+// @CrossOrigin - It's same implementing CORS, No required WebConfig class
+@CrossOrigin(origins = "http://localhost:4200",maxAge = 3600L)
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
